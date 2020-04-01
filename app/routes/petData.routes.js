@@ -12,6 +12,9 @@ module.exports = app => {
 
     // Retrieve all PetData with petId
     app.get("/petData/pet/:petId", petData.findByPetId);
+
+    //Retrieve the last 5 petData from pet with petId
+    app.get("/petData/pet/5/:petId", petData.find5ByPetId);
   
     // Update a PetData with dataId
     app.put("/petData/:dataId", petData.update);

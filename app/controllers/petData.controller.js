@@ -78,6 +78,23 @@ exports.findByPetId = (req, res) => {
     });
 };
 
+// Find 5 PetData with a petId
+exports.find5ByPetId = (req, res) => {
+  PetData.find5BypetId(req.params.petId, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found PetData with petId ${req.params.petId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving PetData with petId " + req.params.petId
+          });
+        }
+      } else res.send(data);
+    });
+};
+
 // Update a PetData identified by the dataId in the request
 exports.update = (req, res) => {
   // Validate Request

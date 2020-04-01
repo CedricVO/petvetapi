@@ -63,6 +63,25 @@ PetData.create = (newPetData, result) => {
     });
   };
 
+  PetData.find5BypetId = (petId, result) => {
+    sql.query("SELECT * FROM petData WHERE petId = ? LIMIT 5 ORDER BY date DESC", petId, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("found petData: ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found PetData with the petId
+      result({ kind: "not_found" }, null);
+    });
+  };
+
   PetData.getAll = result => {
     sql.query("SELECT * FROM petData", (err, res) => {
       if (err) {
