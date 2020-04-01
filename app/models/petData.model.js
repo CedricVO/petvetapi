@@ -64,7 +64,7 @@ PetData.create = (newPetData, result) => {
   };
 
   PetData.find5BypetId = (petId, result) => {
-    sql.query("SELECT * FROM petData WHERE petId = ? ORDER BY date DESC TOP 5", petId, (err, res) => {
+    sql.query("SELECT * FROM petData WHERE petId = ? ORDER BY date DESC LIMIT 5", petId, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
