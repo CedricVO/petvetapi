@@ -152,3 +152,20 @@ exports.deleteAll = (req, res) => {
         else res.send({ message: `All PetDatas were deleted successfully!` });
       });
 };
+
+exports.deleteAllByPetId = (req, res) => {
+  console.log("delete");
+    PetData.removeAllByPetId(req.params.petId, (err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `Not found PetData with id ${req.params.petId}.`
+            });
+          } else {
+            res.status(500).send({
+              message: "Could not delete PetData with id " + req.params.petId
+            });
+          }
+        } else res.send({ message: `PetData was deleted successfully!` });
+      });
+};

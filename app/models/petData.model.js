@@ -150,4 +150,23 @@ PetData.create = (newPetData, result) => {
     });
   };
 
+  PetData.removeAllByPetId = (petId, result) => {
+    sql.query("DELETE * FROM petData WHERE petId = ?", petId, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      if (res.affectedRows == 0) {
+        // not found PetData with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+  
+      console.log("deleted all petData with id: ", dataId);
+      result(null, res);
+    });
+  };
+
   module.exports = PetData;

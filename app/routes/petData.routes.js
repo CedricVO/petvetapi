@@ -22,6 +22,9 @@ module.exports = app => {
     // Delete a PetData with dataId
     app.delete("/petData/:dataId", petData.delete);
   
-    // Create a new PetData
+    // Delete all PetData
     app.delete("/petData", petData.deleteAll);
+
+    // Delete all PetData by petId
+    app.delete("/petData/:petId", petData.deleteAllByPetId);
   };
