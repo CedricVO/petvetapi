@@ -151,7 +151,7 @@ PetData.create = (newPetData, result) => {
   };
 
   PetData.removeAllByPetId = (petId, result) => {
-    sql.query("DELETE * FROM petData WHERE petId = ?", petId, (err, res) => {
+    sql.query("DELETE FROM petData WHERE petId = ?", petId, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
