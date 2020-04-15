@@ -159,11 +159,11 @@ exports.deleteAllByPetId = (req, res) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found PetData with id ${req.params.petId}.`
+              message: `Not found PetData with petIdd ${req.params.petId}.`
             });
           } else {
             res.status(500).send({
-              message: "Could not delete PetData with id " + req.params.petId
+              message: "Could not delete PetData with petId " + req.params.petId
             });
           }
         } else res.send({ message: `PetData was deleted successfully!` });
